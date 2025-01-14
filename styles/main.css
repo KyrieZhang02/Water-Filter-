@@ -480,7 +480,7 @@ body {
     min-height: 350px;  /* 调整这个值可以改变卡片高度,比如改为400px会让卡片更高 */
     backface-visibility: hidden;
     border-radius: 15px;
-    padding: 0px;  /* 调整这个值可以改变内容与边缘的间距,比如改为30px会有更大间距 */
+    padding: 30px;  /* 调整这个值可以改变内容与边缘的间距,比如改为30px会有更大间距 */
     background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
     display: flex;
