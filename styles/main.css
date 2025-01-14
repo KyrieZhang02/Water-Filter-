@@ -102,7 +102,7 @@ body {
     color: rgba(173, 216, 230, 0.95);
     letter-spacing: 10px;
     text-transform: uppercase;
-    margin-top: 80px;  /* 添加顶部边距 */
+    margin-top: 150px;  /* 添加顶部边距 */
     text-shadow: 
         0 0 10px rgba(173, 216, 230, 0.8),
         0 0 20px rgba(135, 206, 235, 0.5),
@@ -471,14 +471,16 @@ body {
 }
 
 /* 卡片正面和背面的共同样式 */
+/* 可以通过修改min-height来调整卡片高度 */
+/* 可以通过修改padding来调整卡片内容与边缘的间距 */
 .card-front, .card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    min-height: 350px;  /* 确保前后面都有相同的最小高度 */
+    min-height: 350px;  /* 调整这个值可以改变卡片高度,比如改为400px会让卡片更高 */
     backface-visibility: hidden;
     border-radius: 15px;
-    padding: 20px;
+    padding: 0px;  /* 调整这个值可以改变内容与边缘的间距,比如改为30px会有更大间距 */
     background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
     display: flex;
@@ -488,6 +490,8 @@ body {
 }
 
 /* 卡片背面样式 */
+/* 背面样式会继承前面定义的min-height和padding */
+/* 可以通过修改border-width来调整边框粗细 */
 .card-back {
     position: absolute;
     width: 100%;
@@ -502,7 +506,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border: 2px solid #3498db;  /* 添加蓝色边框 */
+    border: 2px solid #3498db;  /* 调整这个值可以改变边框粗细,比如改为3px会有更粗的边框 */
     box-shadow: 
         0 0 10px rgba(52, 152, 219, 0.3),
         0 0 20px rgba(52, 152, 219, 0.2),
@@ -972,6 +976,326 @@ h1 {
             0 0 30px #3498db,
             0 0 40px #3498db;
     }
+}
+
+
+/* AI功能部分样式 */
+.details-content {
+    margin-top: -190px;  /* 调整与上方内容的间距 */
+    padding-top: 110px;  /* 添加顶部内边距 */
+}
+
+.details-content h2 {
+    color: #fff;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* 产品描述容器 */
+.product-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.3em;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    text-align: left;
+    margin-left: 200px;
+    margin-right: auto;
+}
+
+/* 光标样式 */
+.typing-cursor {
+    display: inline-block;
+    width: 1px;
+    height: 1.4em;
+    background-color: #3498db;
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink-caret 0.75s step-end infinite;
+}
+
+/* 光标闪烁动画 */
+@keyframes blink-caret {
+    from, to { opacity: 0 }
+    50% { opacity: 1 }
+}
+
+/* 功能特性网格 */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.feature-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;  /* 添加过渡效果 */
+    border: 1px solid transparent;  /* 添加透明边框 */
+}
+
+/* 悬停效果 */
+.feature-item:hover {
+    transform: translateY(-10px);  /* 向上浮动 */
+    background: rgba(255, 255, 255, 0.08);  /* 略微变亮 */
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(52, 152, 219, 0.3);  /* 添加蓝色发光效果 */
+    border: 1px solid rgba(52, 152, 219, 0.3);  /* 显示蓝色边框 */
+}
+
+/* 图标悬停效果 */
+.feature-item:hover .feature-icon {
+    transform: scale(1.1);  /* 只使用scale，从中心放大 */
+    color: #3498db;
+}
+
+/* 添加图标过渡效果 */
+.feature-icon {
+    font-size: 2em;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    transform-origin: center center;  /* 设置变换原点在中心 */
+    display: inline-block;  /* 使transform-origin生效 */
+}
+
+.feature-item h3 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+.feature-item ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.feature-item ul li {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.feature-item ul li::before {
+    content: "•";
+    color: #3498db;
+    position: absolute;
+    left: -15px;
+}
+
+/* 生产流程部分 */
+.process-section {
+    margin-top: 60px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.process-section h2 {
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.process-content {
+    max-width: 900px;  /* 限制内容最大宽度 */
+    margin: 0 auto;
+}
+
+.process-image {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.process-image img {
+    max-width: 80%;  /* 限制图片最大宽度 */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.process-description {
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+/* 产品介绍部分标题样式 */
+.product-intro h1 {
+    font-family: Arial, sans-serif;
+    font-size: 4em;
+    font-weight: 900;
+    color: rgba(173, 216, 230, 0.95);
+    letter-spacing: 10px;
+    text-transform: capitalize;
+    text-shadow: 
+        0 0 10px rgba(173, 216, 230, 0.8),
+        0 0 20px rgba(135, 206, 235, 0.5),
+        0 0 30px rgba(100, 149, 237, 0.3),
+        0 0 40px rgba(0, 191, 255, 0.3),
+        0 0 70px rgba(30, 144, 255, 0.2);
+    animation: titleGlow 2s ease-in-out infinite;
+}
+
+/* 标题发光动画 */
+@keyframes titleGlow {
+    0% {
+        text-shadow: 
+            0 0 10px rgba(173, 216, 230, 0.8),
+            0 0 20px rgba(135, 206, 235, 0.5),
+            0 0 30px rgba(100, 149, 237, 0.3),
+            0 0 40px rgba(0, 191, 255, 0.3),
+            0 0 70px rgba(30, 144, 255, 0.2);
+    }
+    50% {
+        text-shadow: 
+            0 0 15px rgba(173, 216, 230, 0.9),
+            0 0 25px rgba(135, 206, 235, 0.6),
+            0 0 35px rgba(100, 149, 237, 0.4),
+            0 0 45px rgba(0, 191, 255, 0.4),
+            0 0 75px rgba(30, 144, 255, 0.3);
+    }
+    100% {
+        text-shadow: 
+            0 0 10px rgba(173, 216, 230, 0.8),
+            0 0 20px rgba(135, 206, 235, 0.5),
+            0 0 30px rgba(100, 149, 237, 0.3),
+            0 0 40px rgba(0, 191, 255, 0.3),
+            0 0 70px rgba(30, 144, 255, 0.2);
+    }
+}
+
+/* 可点击图片样式 */
+.fullscreen-img {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.fullscreen-img:hover {
+    opacity: 0.9;
+}
+
+/* 全屏模态框样式 */
+.fullscreen-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+
+/* 关闭按钮样式 */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+/* 全屏图片样式 */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 水母页面的发光线条样式 */
+.jellyfish-line::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 8px;
+    background: #3498db;
+    position: absolute;
+    bottom: 180px;
+    left: 0;
+    transform-origin: left center;
+    animation: laserScanJellyfish 1.5s ease forwards 14s;  /* 提前到15秒 */
+    opacity: 0;
+}
+
+/* 水母页面的激光扫描动画 */
+@keyframes laserScanJellyfish {
+    0% {
+        opacity: 1;
+        transform: scaleX(0);
+        box-shadow: 
+            0 0 10px #3498db,
+            0 0 20px #3498db,
+            0 0 30px #3498db,
+            0 0 40px #3498db;
+    }
+    100% {
+        opacity: 1;
+        transform: scaleX(1);
+        box-shadow: 
+            0 0 10px #3498db,
+            0 0 20px #3498db,
+            0 0 30px #3498db,
+            0 0 40px #3498db;
+    }
+}
+
+/* Technical Details Styles */
+.technical-details {
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.tech-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tech-section h3 {
+    color: #3498db;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.tech-section h4 {
+    color: #3498db;
+    margin: 1.5rem 0 1rem;
+    font-size: 1.2rem;
+}
+
+.tech-section p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.tech-section ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+    margin: 1rem 0;
+}
+
+.tech-section li {
+    margin: 0.5rem 0;
+    line-height: 1.4;
 }
 
 

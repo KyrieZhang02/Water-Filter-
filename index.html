@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaNova</title>
     <meta name="author" content="Kyrie">
-    <link rel="stylesheet" href="/Water-Filter-/styles/main.css">
+    <link rel="stylesheet" href="styles/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
@@ -15,21 +15,20 @@
     <nav class="main-nav">
         <div class="logo">AQUANOVA</div>
         <ul class="nav-links">
-            <li><a href="/Water-Filter-/#home">Home</a></li>
-            <li><a href="/Water-Filter-/about.html">About Us</a></li>
-            <li><a href="/Water-Filter-/#innovation">Our Innovation</a></li>
-            <li><a href="/Water-Filter-/#business">Marketing Strategy</a></li>
-            <li><a href="/Water-Filter-/#contact">Contact</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#innovation">Our Innovation</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         <button class="menu-toggle">☰</button>
     </nav>
 
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1 class="hero-title">We are AQUANOVA</h1>
+            <h1 class="hero-title">AQUANOVA</h1>
             <div class="glowing-line"></div>
             <div class="logo-image">
-                <img src="/Water-Filter-/images/A.png" alt="AQUANOVA Logo">
+                <img src="images/A.png" alt="AQUANOVA Logo">
             </div>
         </div>
     </section>
@@ -40,7 +39,7 @@
             <div class="product-grid">
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://via.placeholder.com/300x200" alt="人工珊瑚">
+                        <img src="images/coral.jpg" alt="人工珊瑚">
                     </div>
                     <div class="product-info">
                         <h3>Ecological Artificial Coral</h3>
@@ -52,14 +51,15 @@
                             <li>Adaptive Optimization</li>
                         </ul>
                         <div class="button-group">
-                            <a href="/Water-Filter-/coral-details.html" class="learn-more">Learn More</a>
-                            <a href="/Water-Filter-/model-view.html" class="view-3d">View 3D Model</a>
+                            <a href="coral-details.html" class="learn-more">Learn More</a>
+                            <a href="model-view.html" class="view-3d">View 3D Model</a>
+                            <a href="experiment-report.html" class="view-3d">Experiment Report</a>
                         </div>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="/Water-Filter-/images/jellyfish2.jpg" alt="Bionic Jellyfish">
+                        <img src="images/jellyfish2.jpg" alt="Bionic Jellyfish">
                     </div>
                     <div class="product-info">
                         <h3>Bionic Jellyfish Filter</h3>
@@ -70,80 +70,47 @@
                             <li>Colorful Ambient Lighting</li>
                         </ul>
                         <div class="button-group">
-                            <a href="/Water-Filter-/jellyfish-details.html" class="learn-more">Learn More</a>
+                            <a href="jellyfish-details.html" class="learn-more">Learn More</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="business" class="business-plan">
-            <h2>Marketing Strategy</h2>
-            <div class="plan-container">
-                <div class="plan-grid">
-                    <div class="plan-item">
-                        <div class="plan-icon">🏛️</div>
-                        <h3>Government & Environmental Organizations</h3>
-                        <p>Engage with government departments and environmental protection agencies to promote our sustainable water purification solutions. Build partnerships with NGOs to expand our environmental impact.</p>
+        <section class="contact-section" id="contact">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <a href="mailto:Kyriezhang02@outlook.com" class="email-link">
+                    <div class="email-icon">
+                        <span class="envelope">
+                            <span class="paper"></span>
+                        </span>
                     </div>
-                    <div class="plan-item">
-                        <div class="plan-icon">📱</div>
-                        <h3>Digital Media Promotion</h3>
-                        <p>Implement comprehensive digital marketing campaigns across social media platforms. Create engaging content showcasing our technology's environmental benefits and real-world applications.</p>
-                    </div>
-                    <div class="plan-item">
-                        <div class="plan-icon">🌏</div>
-                        <h3>Environmental Exhibition Presence</h3>
-                        <p>Participate in major environmental technology exhibitions and sustainability conferences. Demonstrate our innovative solutions through live demonstrations and interactive displays.</p>
-                    </div>
-                    <div class="plan-item">
-                        <div class="plan-icon">🤝</div>
-                        <h3>Community Engagement & CSR</h3>
-                        <p>Organize community-based environmental education programs and public welfare activities. Collaborate with schools and local organizations to raise awareness about water conservation and environmental protection.</p>
-                    </div>
-                </div>
+                    <span class="email-text">Kyriezhang02@outlook.com</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <section class="contact-section" id="contact">
-        <h2>Contact Us</h2>
-        <div class="contact-container">
-            <a href="mailto:Kyriezhang02@outlook.com" class="email-link">
-                <div class="email-icon">
-                    <span class="envelope">
-                        <span class="paper"></span>
-                    </span>
-                </div>
-                <span class="email-text">Kyriezhang02@outlook.com</span>
-            </a>
-        </div>
-    </section>
-
-    
-
-    <script src="/Water-Filter-/scripts/model-viewer.js"></script>
+    <script src="scripts/model-viewer.js"></script>
     <script>
-        // 获取模态框元素
+        // 模态框相关代码保持不变
         const modal = document.getElementById('coralModal');
         const closeButton = document.querySelector('.close-button');
         const learnMoreButtons = document.querySelectorAll('.learn-more');
 
-        // 打开模态框
         learnMoreButtons.forEach(button => {
             button.addEventListener('click', () => {
                 modal.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // 防止背景滚动
+                document.body.style.overflow = 'hidden';
             });
         });
 
-        // 关闭模态框
         closeButton.addEventListener('click', () => {
             modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // 恢复背景滚动
+            document.body.style.overflow = 'auto';
         });
 
-        // 点击模态框外部关闭
         window.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.style.display = 'none';
@@ -151,7 +118,6 @@
             }
         });
 
-        // ESC键关闭模态框
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && modal.style.display === 'block') {
                 modal.style.display = 'none';

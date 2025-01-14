@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment Report | AquaNova</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .report-page {
+            padding-top: 120px;  /* 增加顶部内边距，避免被导航栏遮住 */
+        }
+
+        .report-content {
+            max-width: 1000px;  /* 减小最大宽度 */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .chart-container {
+            width: 80%;  /* 控制图表容器宽度 */
+            max-width: 800px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .report-main-title {
+            font-size: 2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        canvas#removalRateChart {
+            max-height: 400px;  /* 控制图表最大高度 */
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">AQUANOVA</div>
+        <ul class="nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#innovation">Our Innovation</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="report-page">
+        <div class="report-content">
+            <!-- 
+                font-family: Arial, sans-serif - 使用Arial字体,如果没有就用无衬线字体
+                font-size: 4em - 字体大小为默认大小的4倍
+                font-weight: 900 - 字体粗细设为最粗
+                color: rgba(173, 216, 230, 0.95) - 使用浅蓝色,透明度95%
+                letter-spacing: 10px - 字母间距10像素
+                text-transform: capitalize - 每个单词首字母大写
+                text-shadow: 多层文字阴影效果,创建发光效果
+                    0 0 10px rgba(173, 216, 230, 0.8) - 第一层浅蓝色阴影
+                    0 0 20px rgba(135, 206, 235, 0.5) - 第二层天蓝色阴影
+                    0 0 30px rgba(100, 149, 237, 0.3) - 第三层矢车菊蓝阴影
+                    0 0 40px rgba(0, 191, 255, 0.3) - 第四层深天蓝阴影
+                    0 0 70px rgba(30, 144, 255, 0.2) - 第五层道奇蓝阴影
+                animation: titleGlow 2s ease-in-out infinite - 应用2秒循环的发光动画效果
+            -->
+            <div class="report-header" style="text-align: center;">
+                <!-- 标题 -->
+                <h2 style="font-family: Arial, sans-serif; 
+                           font-size: 4em; 
+                           font-weight: 900; 
+                           color: rgba(173, 216, 230, 0.95); 
+                           letter-spacing: 10px; 
+                           text-transform: capitalize;
+                           margin: 0 0 20px 0;
+                           text-shadow: 0 0 10px rgba(173, 216, 230, 0.8),
+                                      0 0 20px rgba(135, 206, 235, 0.5),
+                                      0 0 30px rgba(100, 149, 237, 0.3),
+                                      0 0 40px rgba(0, 191, 255, 0.3),
+                                      0 0 70px rgba(30, 144, 255, 0.2); 
+                           animation: titleGlow 2s ease-in-out infinite;">Experiment Report 1</h2>
+
+                <!-- 副标题 -->
+                <h3 style="font-family: Arial, sans-serif;
+                           font-size: 1.5em;
+                           color: rgba(173, 216, 230, 0.85);
+                           margin: 0 0 20px 0;
+                           letter-spacing: 3px;">
+                    Investigation of Rhodamine Removal Using CuO-SA Composite
+                </h3>
+
+                <!-- 切换按钮 -->
+                <div class="switch-buttons" style="display: flex; gap: 10px; justify-content: center; margin-bottom: 0px;">
+                    <a href="experiment-report-2.html" class="switch-button" style="
+                        display: inline-block;
+                        padding: 8px 15px;
+                        background: rgba(52, 152, 219, 0.2);
+                        border: 1px solid #3498db;
+                        border-radius: 5px;
+                        color: #fff;
+                        text-decoration: none;
+                        font-size: 0.9rem;
+                        transition: all 0.3s ease;">
+                        Switch to Experiment 2
+                    </a>
+                    <a href="experiment-report-3.html" class="switch-button" style="
+                        display: inline-block;
+                        padding: 8px 15px;
+                        background: rgba(52, 152, 219, 0.2);
+                        border: 1px solid #3498db;
+                        border-radius: 5px;
+                        color: #fff;
+                        text-decoration: none;
+                        font-size: 0.9rem;
+                        transition: all 0.3s ease;">
+                        Switch to Experiment 3
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 图表部分 -->
+            <section class="report-section">
+                <div class="chart-container">
+                    <h3>Figure 1: Removal Rate vs CuO:SA Ratio</h3>
+                    <canvas id="removalRateChart"></canvas>
+                </div>
+            </section>
+
+            <!-- 其他内容移到图表下面 -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; 
+                           font-size: 2em; 
+                           font-weight: 900;
+                           color: rgba(173, 216, 230, 0.95);
+                           letter-spacing: 5px;
+                           margin-bottom: 1rem;
+                           text-shadow: 0 0 10px rgba(173, 216, 230, 0.8),
+                                      0 0 20px rgba(135, 206, 235, 0.5),
+                                      0 0 30px rgba(100, 149, 237, 0.3);">Study on the Filtration Effect of CuO and Sodium Alginate Mixtures on Rhodamine from Water</h2>
+                <div class="data-table-container">
+                    <h3 style="color: rgba(173, 216, 230, 0.95); margin-bottom: 1.5rem;">Table 1: Removal Rate of Rhodamine at Different CuO:SA Ratios</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="background: rgba(52, 152, 219, 0.3); font-weight: bold; border: 1px solid rgba(52, 152, 219, 0.5); border-bottom: 2px solid rgba(52, 152, 219, 0.8); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9); white-space: nowrap;">CuO:SA Ratio</th>
+                                <th style="background: rgba(52, 152, 219, 0.3); font-weight: bold; border: 1px solid rgba(52, 152, 219, 0.5); border-bottom: 2px solid rgba(52, 152, 219, 0.8); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9); white-space: nowrap;">Initial Concentration (mg/L)</th>
+                                <th style="background: rgba(52, 152, 219, 0.3); font-weight: bold; border: 1px solid rgba(52, 152, 219, 0.5); border-bottom: 2px solid rgba(52, 152, 219, 0.8); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9); white-space: nowrap;">Final Concentration (mg/L)</th>
+                                <th style="background: rgba(52, 152, 219, 0.3); font-weight: bold; border: 1px solid rgba(52, 152, 219, 0.5); border-bottom: 2px solid rgba(52, 152, 219, 0.8); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9); white-space: nowrap;">Removal Rate (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">1:1</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">100</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">35.2</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">64.8</td>
+                            </tr>
+                            <tr>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">2:1</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">100</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">28.5</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">71.5</td>
+                            </tr>
+                            <tr>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">3:1</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">100</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">15.3</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">84.7</td>
+                            </tr>
+                            <tr>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">4:1</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">100</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">18.9</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">81.1</td>
+                            </tr>
+                            <tr>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">1:2</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">100</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">42.6</td>
+                                <td style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(52, 152, 219, 0.5); padding: 12px 15px; text-align: center; color: rgba(255, 255, 255, 0.9);">57.4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 其他部分保持不变 -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">1. Objective</h2>
+                <p>The experiment aims to investigate the filtration performance of mixtures of copper oxide (CuO) and sodium alginate (SA) in different ratios on rhodamine-contaminated water. The goal is to determine the optimal material ratio to provide a reference for improving water purification technologies.</p>
+            </section>
+
+            <!-- Principle -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">2. Principle</h2>
+                <p>Copper oxide (CuO) has strong adsorption properties and the ability to catalytically degrade organic pollutants, while sodium alginate (SA) serves as a film-forming and stabilizing agent, providing structural support and a dispersing environment for CuO. By preparing composite membranes with CuO and SA in different ratios, filtering rhodamine-contaminated water, and measuring the removal rate of rhodamine, the purification effect is evaluated.</p>
+            </section>
+
+            <!-- Materials and Instruments -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">3. Materials and Instruments</h2>
+                <ul>
+                    <li>Materials: Copper oxide(CuO) powder, sodium alginate(SA) powder, deionized water, rhodamine solution (100 mg/L concentration).</li>
+                    <li>Instruments: Electronic balance, beaker, magnetic stirrer, ultrasonic cleaner, vacuum filtration device, spectrophotometer, pipette, filter paper, and test tubes.</li>
+                </ul>
+            </section>
+
+            <!-- Methods -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">4. Methods</h2>
+                <h3 style="font-family: Arial, sans-serif; font-size: 1.5em; color: rgba(173, 216, 230, 0.85); margin-top: 1rem;">4.1 Preparation of Filtration Membranes</h3>
+                <ol>
+                    <li>Measure the mass of CuO and SA according to the set ratios (e.g., CuO:SA = 1:1, 2:1, 3:1, 4:1, 1:2). Record the data.</li>
+                    <li>Add an appropriate amount of deionized water to a beaker and dissolve the SA completely by stirring for 30 minutes to form a uniform sodium alginate solution.</li>
+                    <li>Add CuO powder to the sodium alginate solution, disperse the mixture evenly using an ultrasonic cleaner for 30 minutes to obtain a homogeneous suspension.</li>
+                </ol>
+            </section>
+
+            <section class="report-section">
+                <h3 style="font-family: Arial, sans-serif; font-size: 1.5em; color: rgba(173, 216, 230, 0.85); margin-top: 1rem;">4.2 Filtration Experiment</h3>
+                <ol>
+                    <li>Prepare a rhodamine solution (e.g., 100 mL at a concentration of 100 mg/L) in a beaker.</li>
+                    <li>Install the CuO/SA composite membrane into the filtration device and ensure proper sealing.</li>
+                    <li>Operate the vacuum filtration device, allowing the rhodamine solution to pass through the membrane, and collect the filtered water samples.</li>
+                    <li>Measure the absorbance of the rhodamine solution before and after filtration using a spectrophotometer at a wavelength of 554 nm.</li>
+                </ol>
+            </section>
+
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">5. Diagram</h2>
+
+                <h3 style="font-family: Arial, sans-serif; font-size: 1.5em; color: rgba(173, 216, 230, 0.85); margin-top: 1rem;">5.1 Data Processing</h3>
+                <div class="data-table-container">
+                    <table class="data-table" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">No.</th>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">CuO:SA Ratio</th>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">Initial Conc. (mg/L)</th>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">Final Conc. (mg/L)</th>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">Removal Rate (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">1:1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">100</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">X1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">R1 = ((100 - X1) / 100) * 100</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">2</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">2:1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">100</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">X2</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">R2 = ((100 - X2) / 100) * 100</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">3</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">3:1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">100</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">X3</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">R3 = ((100 - X3) / 100) * 100</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">4</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">4:1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">100</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">X4</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">R4 = ((100 - X4) / 100) * 100</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">5</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">1:2</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">100</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">X5</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">R5 = ((100 - X5) / 100) * 100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="font-family: Arial, sans-serif; font-size: 1.5em; color: rgba(173, 216, 230, 0.85); margin-top: 2rem;">5.2 Experimental Results</h3>
+                <div class="data-table-container">
+                    <table class="data-table" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">No.</th>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">CuO:SA Ratio</th>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">Initial Absorbance</th>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">Final Absorbance</th>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">Initial Conc. (mg/L)</th>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">Final Conc. (mg/L)</th>
+                                <th style="border: 2px solid #3498db; padding: 12px; text-align: center; background: rgba(52, 152, 219, 0.2);">Removal Rate (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">1:1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">0.845</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">0.523</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">100</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">61.9</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">38.1%</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">2</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">2:1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">0.847</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">0.423</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">100</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">50.9</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">49.1%</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">3</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">3:1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">0.849</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">0.351</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">100</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">42.0</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">58.0%</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">4</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">4:1</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">0.850</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">0.295</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">100</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">35.2</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">64.8%</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">5</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">1:2</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">0.846</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">0.611</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">100</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">72.3</td>
+                                <td style="border: 2px solid #3498db; padding: 12px; text-align: center;">27.7%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 6. Results Analysis -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">6. Results Analysis</h2>
+                <ul>
+                    <li>Compare the removal rates of rhodamine for different CuO:SA ratios based on the collected data and identify the ratio with the best performance.</li>
+                    <li>Use software such as Excel or Origin to plot a graph showing the relationship between the removal rate and the CuO:SA ratio to visually present the differences in performance across various ratios.</li>
+                    <li>Analyze the microstructure of the membranes to explain the differences in filtration effectiveness under varying ratios, focusing on factors such as the uniformity of CuO distribution and the porosity of the membranes.</li>
+                </ul>
+            </section>
+
+            <!-- 7. Conclusion -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">7. Conclusion</h2>
+                <ul>
+                    <li>Determine the optimal CuO:SA ratio (e.g., CuO:SA = 3:1) corresponding to the best removal rate and the change in concentration.</li>
+                    <li>Explain the impact of the composite structure of CuO and SA on rhodamine removal efficiency, analyzing its potential application in practical water purification.</li>
+                </ul>
+            </section>
+
+            <!-- 8. Discussion -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">8. Discussion</h2>
+                <ul>
+                    <li>Discuss the effects of excessively high or low CuO content on the filtration performance in CuO-SA structures.</li>
+                    <li>Explore the potential influence of membrane porosity, thickness, and material stability on the removal rate.</li>
+                    <li>Propose further optimization strategies for CuO and SA ratios and potential future research directions, such as adding active substances or optimizing the membrane-forming process.</li>
+                </ul>
+                <p>This report can serve as a basis for evaluating the effectiveness of CuO-SA composite membranes in water purification applications.</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('removalRateChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1:1', '2:1', '3:1', '4:1', '1:2'],
+                datasets: [{
+                    label: 'Removal Rate (%)',
+                    data: [64.8, 71.5, 84.7, 81.1, 57.4],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#fff'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#fff'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#fff'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

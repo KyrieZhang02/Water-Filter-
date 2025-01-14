@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiment Report 2 | AquaNova</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .report-page {
+            padding-top: 120px;
+        }
+
+        .report-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .chart-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        canvas#removalRateChart {
+            max-height: 400px;
+        }
+
+        /* 更新表格样式 */
+        .data-table-container {
+            margin: 2rem 0;
+            overflow-x: auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 1rem 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid rgba(52, 152, 219, 0.5);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .data-table th {
+            background: rgba(52, 152, 219, 0.3);
+            font-weight: bold;
+            border-bottom: 2px solid rgba(52, 152, 219, 0.8);
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .data-table tr:hover td {
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .data-table-container h3 {
+            color: rgba(173, 216, 230, 0.95);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">AQUANOVA</div>
+        <ul class="nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#innovation">Our Innovation</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="report-page">
+        <div class="report-content">
+            <div class="report-header" style="text-align: center;">
+                <!-- 标题 -->
+                <h2 style="font-family: Arial, sans-serif; 
+                           font-size: 4em; 
+                           font-weight: 900; 
+                           color: rgba(173, 216, 230, 0.95); 
+                           letter-spacing: 10px; 
+                           text-transform: capitalize;
+                           margin: 0 0 10px 0;
+                           text-shadow: 0 0 10px rgba(173, 216, 230, 0.8),
+                                      0 0 20px rgba(135, 206, 235, 0.5),
+                                      0 0 30px rgba(100, 149, 237, 0.3),
+                                      0 0 40px rgba(0, 191, 255, 0.3),
+                                      0 0 70px rgba(30, 144, 255, 0.2); 
+                           animation: titleGlow 2s ease-in-out infinite;">Experiment Report 2</h2>
+
+                <!-- 添加副标题 -->
+                <h3 style="font-family: Arial, sans-serif;
+                           font-size: 1.5em;
+                           color: rgba(173, 216, 230, 0.85);
+                           margin: 0 0 20px 0;
+                           letter-spacing: 3px;">
+                    Study on Chlorophenol Removal Using CuO-SA Composite
+                </h3>
+
+                <!-- 切换按钮组 -->
+                <div class="switch-buttons" style="display: flex; gap: 10px; justify-content: center; margin-bottom: 0px;">
+                    <a href="experiment-report.html" class="switch-button" style="
+                        display: inline-block;
+                        padding: 8px 15px;
+                        background: rgba(52, 152, 219, 0.2);
+                        border: 1px solid #3498db;
+                        border-radius: 5px;
+                        color: #fff;
+                        text-decoration: none;
+                        font-size: 0.9rem;
+                        transition: all 0.3s ease;">
+                        Switch to Experiment 1
+                    </a>
+                    <a href="experiment-report-3.html" class="switch-button" style="
+                        display: inline-block;
+                        padding: 8px 15px;
+                        background: rgba(52, 152, 219, 0.2);
+                        border: 1px solid #3498db;
+                        border-radius: 5px;
+                        color: #fff;
+                        text-decoration: none;
+                        font-size: 0.9rem;
+                        transition: all 0.3s ease;">
+                        Switch to Experiment 3
+                    </a>
+                </div>
+            </div>
+
+            <!-- 图表部分 -->
+            <section class="report-section">
+                <div class="chart-container">
+                    <h3>Figure 1: Removal Rate vs CuO:SA Ratio</h3>
+                    <canvas id="removalRateChart"></canvas>
+                </div>
+            </section>
+
+            <!-- 1. Introduction -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">1. Introduction</h2>
+                <p>Chlorophenol is a toxic organic compound commonly found in industrial wastewater. Effective removal of chlorophenol is essential to mitigate its harmful effects on the environment and human health. This experiment investigates the optimal ratio of a composite material made of copper oxide (CuO) and sodium alginate for the removal of chlorophenol from water. Sodium alginate serves as a biopolymer matrix to encapsulate CuO particles, facilitating the adsorption and degradation of chlorophenol.</p>
+            </section>
+
+            <!-- 2. Objective -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">2. Objective</h2>
+                <p>To determine the optimal ratio of CuO to sodium alginate for maximum chlorophenol removal efficiency from polluted water.</p>
+            </section>
+
+            <!-- 3. Materials -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">3. Materials</h2>
+                <p>Copper oxide (CuO) powder, Sodium alginate, Chlorophenol solution (10 mg/L), Calcium chloride (CaCl2) solution (2% w/v), Distilled water, Magnetic stirrer, UV-Vis spectrophotometer, Beakers, pipettes, and analytical balance</p>
+            </section>
+
+            <!-- 4. Methodology -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">4. Methodology</h2>
+                
+                <h3 style="font-family: Arial, sans-serif; font-size: 1.5em; color: rgba(173, 216, 230, 0.85); margin-top: 1rem;">4.1 Preparation of CuO-Alginate Beads</h3>
+                <ol>
+                    <li>Prepare mixtures of CuO and sodium alginate in varying weight ratios (e.g., 1:1, 2:1, 1:2, etc.).</li>
+                    <li>Stir the mixtures until homogeneous.</li>
+                    <li>Using a pipette, drop the mixtures into a 2% CaCl2 solution to form beads.</li>
+                    <li>Allow the beads to harden for 30 minutes and then rinse with distilled water.</li>
+                </ol>
+
+                <h3 style="font-family: Arial, sans-serif; font-size: 1.5em; color: rgba(173, 216, 230, 0.85); margin-top: 1rem;">4.2 Chlorophenol Removal Test</h3>
+                <ol>
+                    <li>Add a fixed mass of beads (1 g) to 50 mL of chlorophenol solution (10 mg/L) in separate beakers.</li>
+                    <li>Stir the solution for 2 hours at room temperature.</li>
+                    <li>Measure the residual chlorophenol concentration using a UV-Vis spectrophotometer at 274 nm.</li>
+                </ol>
+
+                <h3 style="font-family: Arial, sans-serif; font-size: 1.5em; color: rgba(173, 216, 230, 0.85); margin-top: 1rem;">4.3 Calculation of Removal Efficiency</h3>
+                <p>The removal efficiency is calculated using the following formula:</p>
+                <p style="color: #fff; margin-left: 20px;">Removal Efficiency (%) = ((Initial Concentration - Final Concentration) / Initial Concentration) × 100</p>
+            </section>
+
+            <!-- 数据表格 -->
+            <section class="report-section">
+                <div class="data-table-container">
+                    <h3>Table 1: Chlorophenol Removal Efficiency at Different CuO:SA Ratios</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>CuO:Sodium Alginate Ratio</th>
+                                <th>Initial Chlorophenol Concentration (mg/L)</th>
+                                <th>Residual Chlorophenol Concentration (mg/L)</th>
+                                <th>Removal Efficiency (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1:1</td>
+                                <td>10</td>
+                                <td>4.5</td>
+                                <td>55</td>
+                            </tr>
+                            <tr>
+                                <td>2:1</td>
+                                <td>10</td>
+                                <td>3.2</td>
+                                <td>68</td>
+                            </tr>
+                            <tr>
+                                <td>1:2</td>
+                                <td>10</td>
+                                <td>5.1</td>
+                                <td>49</td>
+                            </tr>
+                            <tr>
+                                <td>3:1</td>
+                                <td>10</td>
+                                <td>2.8</td>
+                                <td>72</td>
+                            </tr>
+                            <tr>
+                                <td>1:3</td>
+                                <td>10</td>
+                                <td>6.2</td>
+                                <td>38</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 6. Discussion -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">6. Discussion</h2>
+                <ul>
+                    <li>The results indicate that the ratio of 3:1 (CuO:Sodium Alginate) achieved the highest removal efficiency of 72%. This suggests that a higher proportion of CuO enhances the adsorption and degradation of chlorophenol.</li>
+                    <li>Ratios with excess sodium alginate (e.g., 1:2 and 1:3) exhibited lower removal efficiencies, likely due to the reduced availability of active CuO sites.</li>
+                    <li>The encapsulation of CuO in sodium alginate provides structural integrity to the beads and facilitates ease of handling.</li>
+                    <li>Further studies could explore the recyclability of the beads and their performance with varying initial concentrations of chlorophenol.</li>
+                </ul>
+            </section>
+
+            <!-- 7. Conclusion -->
+            <section class="report-section">
+                <h2 style="font-family: Arial, sans-serif; font-size: 2em; font-weight: 700; color: rgba(173, 216, 230, 0.95); letter-spacing: 5px; text-shadow: 0 0 10px rgba(173, 216, 230, 0.8);">7. Conclusion</h2>
+                <p>The optimal ratio of CuO to sodium alginate for the removal of chlorophenol from polluted water is 3:1. This composition maximizes removal efficiency while maintaining structural stability of the beads.</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('removalRateChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1:1', '2:1', '3:1', '1:2', '1:3'],
+                datasets: [{
+                    label: 'Removal Rate (%)',
+                    data: [55, 68, 72, 49, 38],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#fff'
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#fff'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#fff'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
