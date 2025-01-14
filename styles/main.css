@@ -494,8 +494,8 @@ body {
 /* 可以通过修改border-width来调整边框粗细 */
 .card-back {
     position: absolute;
-    width: 800%;
-    height: 800%;
+    width: 80%;
+    height: 80%;
     min-height: 350px;
     backface-visibility: hidden;
     border-radius: 15px;
